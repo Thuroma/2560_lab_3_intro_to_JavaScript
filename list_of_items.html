@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create List</title>
+</head>
+
+<body>
+
+    <!-- Set up the HTML that will be used by JavaScript -->
+    <input id="user-input" type="text"></input>
+
+    <ul id="list-of-text-inputs"></ul>
+
+    <button id="add-text-button">Click to add entry to the list</button>
+    
+    <button id="clear-list-button">Clear list</button>
+
+<script>
+
+    // script here
+
+    // Identify the elements JavaScript will need to work with
+    let userInputElement = document.querySelector('#user-input')    // User input
+    let inputList = document.querySelector('#list-of-text-inputs')  // List of user inputs
+    let addButton = document.querySelector('#add-text-button')      // Add button
+    let clearButton = document.querySelector('#clear-list-button')  // Clear button
+
+    let elementsInList = 0          // Current count of line items
+    let maximumNumberOfInputs = 10  // Maximum number of entries allowed
+
+    // When the user types text into the input form and clicks the button, 
+    addButton.addEventListener('click', function() {
+
+        // Limit the number of entries
+        if (elementsInList >= maximumNumberOfInputs) {
+            alert('You cannot add any more entries. Clear list to continue.')
+            return
+        }
+
+        // Save the text entered by the user to a variable
+        let newUserInput = userInputElement.value
+
+        // Create a new list element
+        let newListItem = document.createElement('li')
+
+        // Set the inner HTML of the new li as the text entered by the user
+        newListItem.innerHTML = newUserInput
+
+        // Add the new list item to the (parent) unordered list
+        inputList.appendChild(newListItem)
+
+        // Clear the text input box
+        userInputElement.value = ''
+
+        // Count the entry
+        elementsInList++
+    })
+
+    // Clears list when clicked
+    clearButton.addEventListener('click', function() {
+        inputList.innerHTML = ''
+
+        // Reset the count number of entries
+        elementsInList = 0
+    })
+
+
+</script>
+</body>
+</html>
