@@ -37,8 +37,21 @@
             return
         }
 
+        
         // Save the text entered by the user to a variable
         let newUserInput = userInputElement.value
+        
+        // Validate the user's entry
+        // Entry too small
+        if (newUserInput.length < 1) {
+            return
+        }
+
+        // Entry too large
+        if (newUserInput.length > 50) {
+            alert('Entries cannot be longer than 50 characters. Please edit your entry.')
+            return
+        }
 
         // Create a new list element
         let newListItem = document.createElement('li')
